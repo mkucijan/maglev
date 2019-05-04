@@ -9,9 +9,9 @@ if [[ $PLUGINS == *"tmux-cpu"* ]]; then
     SHOW_CPU=true
 fi
 SHOW_BATTERY=false
-if [[ $PLUGINS == *"tmux-battery"* ]]; then
-    SHOW_BATTERY=true
-fi
+#if [[ $PLUGINS == *"tmux-battery"* ]]; then
+#    SHOW_BATTERY=true
+#fi
 
 # Battery icons
 tmux set -g @batt_charged_icon "︎♡"
@@ -144,7 +144,8 @@ apply_theme() {
     whoami_bg=colour160         # red
     host_fg=colour16            # black
     host_bg=colour254           # white
-    status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
+    #status_right="︎#[fg=$time_date_fg,nobold]#{prefix_highlight} $right_separattor %R $right_separator %a %d %b #[fg=$host_bg]"
+    status_right="#[fg=$time_date_fg, nobold]#{prefix_highlight} $right_separator %R $right_separator %a %d %b #[fg=$host_bg]"
 
     # Only show solid separator if CPU or Battery are to be displayed
     if [ "$SHOW_BATTERY" = true ] || [ "$SHOW_CPU" = true ]; then
@@ -152,7 +153,7 @@ apply_theme() {
     fi
 
     if [ "$SHOW_BATTERY" = true ]; then
-        status_right="$status_right #{battery_icon} #{battery_percentage}"
+        status_right="$status_right  #{battery_percentage}"
     fi
 
     # Only add intermediate separator if both CPU and Batter are to be displayed
